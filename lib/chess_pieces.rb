@@ -2,7 +2,8 @@
 
 # Hold values common to all chess pieces
 class ChessPiece
-  attr_accessor :location, :previous_location, :color
+  attr_accessor :location, :previous_location
+  attr_reader :color
 
   def initialize(starting_location, color)
     @location = starting_location
