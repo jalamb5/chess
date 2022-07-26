@@ -7,6 +7,10 @@ class ChessPiece
   def initialize(starting_location)
     @location = starting_location
   end
+
+  def self.for(type, location)
+    const_get("#{type}").new(location)
+  end
 end
 
 # Pawn specific values
