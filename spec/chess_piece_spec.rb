@@ -35,7 +35,7 @@ describe ChessPiece do
         expect(pawn.en_passant).to eq false
       end
 
-      it 'can move to a new location' do
+      it 'can update its location' do
         pawn.location = :a3
         expect(pawn.location).to eq :a3
       end
