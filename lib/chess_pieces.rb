@@ -5,6 +5,8 @@ class ChessPiece
   attr_accessor :location, :previous_location
   attr_reader :color
 
+  include Movement
+
   def initialize(starting_location, color)
     @location = starting_location
     @previous_location = nil
