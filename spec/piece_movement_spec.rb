@@ -16,5 +16,9 @@ describe Movement do
       pawn.move(:a3)
       expect(pawn.previous_location).to eq :a2
     end
+
+    it 'disallows invalid moves' do
+      expect(pawn.move(:a21)).to eq('some error message')
+    end
   end
 end

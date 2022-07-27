@@ -4,7 +4,16 @@
 module Movement
   def move(new_location)
     current_location = location
-    self.location = new_location
+    self.location = new_location if legal(new_location)
     self.previous_location = current_location
+  end
+
+  private
+
+  def legal(new_location)
+    # retrieve legal moveset from piece
+    # check new_location against possible legal moves
+    # return false if the move is illegal
+    true
   end
 end
