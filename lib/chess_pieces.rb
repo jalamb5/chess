@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require_relative '../lib/piece_movement'
+
 # Hold values common to all chess pieces
 class ChessPiece
-  attr_accessor :location, :previous_location
+  attr_accessor :location, :previous_location, :has_moved
   attr_reader :color
 
   include Movement
@@ -11,6 +13,7 @@ class ChessPiece
     @location = starting_location
     @previous_location = nil
     @color = color
+    @has_moved = false
   end
 
   def self.for(type, color, location)
@@ -27,5 +30,6 @@ class Pawn < ChessPiece
     super(starting_location, color)
     @symbol = 'P'
     @en_passant = false
+    # @legal_moves = pawn_moves
   end
 end

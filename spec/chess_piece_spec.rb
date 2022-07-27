@@ -1,17 +1,18 @@
 # frozen_string_literal: true
 
 require_relative '../lib/chess_pieces'
+require_relative '../lib/piece_movement'
 
 describe ChessPiece do
   context '#for' do
-    let(:pawn) { ChessPiece.for(Pawn, :W, :a2) }
+    let(:pawn) { ChessPiece.for(Pawn, :W, ['a', 2]) }
 
     it 'creates a pawn' do
       expect(pawn).to be_an_instance_of Pawn
     end
 
     it 'places the pawn on a board space' do
-      expect(pawn.location).to eq :a2
+      expect(pawn.location).to eq ['a', 2]
     end
 
     it 'makes the pawn white' do
@@ -24,7 +25,8 @@ describe ChessPiece do
   end
 
   describe Pawn do
-    let(:pawn) { Pawn.new(:a2, :W) }
+    let(:pawn) { Pawn.new(['a', 2], :W) }
+    # let(:pawn_forward_one) { [[location[0], location[1] + 1]] }
 
     context '#initialize' do
       it 'displays "P" as symbol' do
@@ -36,8 +38,12 @@ describe ChessPiece do
       end
 
       it 'can update its location' do
-        pawn.location = :a3
-        expect(pawn.location).to eq :a3
+        pawn.location = ['a', 3]
+        expect(pawn.location).to eq ['a', 3]
+      end
+
+      it 'generates a list of legal moves' do
+        expect(pawn.legal_moves).to eq pawn_forward_one
       end
     end
   end

@@ -19,6 +19,11 @@ describe Movement do
       expect(pawn.previous_location).to eq original_location
     end
 
+    it 'marks the piece as has_moved' do
+      pawn.move(new_location)
+      expect(pawn.has_moved).to eq true
+    end
+
     xit 'disallows invalid moves' do
       expect(pawn.move(['a', 21])).to eq('some error message')
     end
