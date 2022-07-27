@@ -36,7 +36,6 @@ class Pawn < ChessPiece
   private
 
   def pawn_moves
-    forward_movement = has_moved ? 1 : 2
-    [location[0], location[1] + forward_movement]
+    has_moved ? [location[0], location[1] + 1] : [[location[0], location[1] + 1], [location[0], location[1] + 2]]
   end
 end

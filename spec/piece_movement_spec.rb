@@ -24,8 +24,8 @@ describe Movement do
       expect(pawn.has_moved).to eq true
     end
 
-    xit 'disallows invalid moves' do
-      expect(pawn.move(['a', 21])).to eq('some error message')
+    it 'disallows invalid moves' do
+      expect(pawn.move(['a', 21])).to eq('invalid move')
     end
   end
 end

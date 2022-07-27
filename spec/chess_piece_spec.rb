@@ -26,7 +26,7 @@ describe ChessPiece do
 
   describe Pawn do
     let(:pawn) { Pawn.new(['a', 2], :W) }
-    let(:pawn_forward_two) { ['a', 4] }
+    let(:pawn_forward_two) { [['a', 3], ['a', 4]] }
 
     context '#initialize' do
       it 'displays "P" as symbol' do
