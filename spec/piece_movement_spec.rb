@@ -5,20 +5,22 @@ require_relative '../lib/chess_pieces'
 
 describe Movement do
   context '#move' do
-    let(:pawn) { ChessPiece.for(Pawn, :W, :a2) }
+    let(:new_location) { ['a', 3] }
+    let(:original_location) { ['a', 2] }
+    let(:pawn) { ChessPiece.for(Pawn, :W, original_location) }
 
     it 'moves a piece from one location to another' do
-      pawn.move(:a3)
-      expect(pawn.location).to eq :a3
+      pawn.move(new_location)
+      expect(pawn.location).to eq new_location
     end
 
     it 'updates previous location' do
-      pawn.move(:a3)
-      expect(pawn.previous_location).to eq :a2
+      pawn.move(new_location)
+      expect(pawn.previous_location).to eq original_location
     end
 
-    it 'disallows invalid moves' do
-      expect(pawn.move(:a21)).to eq('some error message')
+    xit 'disallows invalid moves' do
+      expect(pawn.move(['a', 21])).to eq('some error message')
     end
   end
 end
