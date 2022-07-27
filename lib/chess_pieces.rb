@@ -23,13 +23,20 @@ end
 
 # Pawn specific values
 class Pawn < ChessPiece
-  attr_reader :symbol
+  attr_reader :symbol, :legal_moves
   attr_accessor :en_passant
 
   def initialize(starting_location, color)
     super(starting_location, color)
     @symbol = 'P'
     @en_passant = false
-    # @legal_moves = pawn_moves
+    @legal_moves = pawn_moves
+  end
+
+  private
+
+  def pawn_moves
+    forward_movement = has_moved ? 1 : 2
+    [location[0], location[1] + forward_movement]
   end
 end

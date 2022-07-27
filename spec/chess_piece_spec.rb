@@ -26,7 +26,7 @@ describe ChessPiece do
 
   describe Pawn do
     let(:pawn) { Pawn.new(['a', 2], :W) }
-    # let(:pawn_forward_one) { [[location[0], location[1] + 1]] }
+    let(:pawn_forward_two) { ['a', 4] }
 
     context '#initialize' do
       it 'displays "P" as symbol' do
@@ -43,7 +43,7 @@ describe ChessPiece do
       end
 
       it 'generates a list of legal moves' do
-        expect(pawn.legal_moves).to eq pawn_forward_one
+        expect(pawn.legal_moves).to eq pawn_forward_two
       end
     end
   end
