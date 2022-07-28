@@ -29,8 +29,8 @@ describe ChessPiece do
     let(:pawn_forward_two) { [['a', 3], ['a', 4]] }
 
     context '#initialize' do
-      it 'displays "P" as symbol' do
-        expect(pawn.symbol).to eq 'P'
+      it 'displays "♙" as symbol' do
+        expect(pawn.symbol).to eq '♙'
       end
 
       it 'is not eligible for en passant' do
