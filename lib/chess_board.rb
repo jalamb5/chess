@@ -9,18 +9,7 @@ class ChessBoard
   end
 
   def pretty_print
-    board_string = String.new
-    board_length = board.length
-
-    board.each do |row|
-      board_string << "#{board_length} "
-      board_length -= 1
-      row.each do |i|
-        board_string << "|#{i}"
-      end
-      board_string << "|\n"
-    end
-    board_string << '   a b c d e f g h'
+    build_board_string(board.length)
   end
 
   private
@@ -30,6 +19,8 @@ class ChessBoard
   end
 
   def build_board_string(board_length)
+    board_string = String.new
+
     board.each do |row|
       board_string << "#{board_length} "
       board_length -= 1
