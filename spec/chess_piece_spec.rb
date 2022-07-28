@@ -26,11 +26,16 @@ describe ChessPiece do
 
   describe Pawn do
     let(:pawn) { Pawn.new(['a', 2], :W) }
+    let(:black_pawn) { Pawn.new(['a', 2], :B) }
     let(:pawn_forward_two) { [['a', 3], ['a', 4]] }
 
     context '#initialize' do
-      it 'displays "♙" as symbol' do
+      it 'displays "♙" as symbol for white pawn' do
         expect(pawn.symbol).to eq '♙'
+      end
+
+      it 'displays "♟" as symbol for black pawn' do
+        expect(black_pawn.symbol).to eq '♟'
       end
 
       it 'is not eligible for en passant' do
