@@ -5,7 +5,16 @@ require_relative '../lib/chess_board'
 describe ChessBoard do
   context '#initialize' do
     let(:blank_board) do
-      "\n       _______________\n    8 |_|_|_|_|_|_|_|_|\n    7 |_|_|_|_|_|_|_|_|\n    6 |_|_|_|_|_|_|_|_|\n    5 |_|_|_|_|_|_|_|_|\n    4 |_|_|_|_|_|_|_|_|\n    3 |_|_|_|_|_|_|_|_|\n    2 |_|_|_|_|_|_|_|_|\n    1 |_|_|_|_|_|_|_|_|\n       a b c d e f g h\n    "
+      [
+        %w[_ _ _ _ _ _ _ _],
+        %w[_ _ _ _ _ _ _ _],
+        %w[_ _ _ _ _ _ _ _],
+        %w[_ _ _ _ _ _ _ _],
+        %w[_ _ _ _ _ _ _ _],
+        %w[_ _ _ _ _ _ _ _],
+        %w[_ _ _ _ _ _ _ _],
+        %w[_ _ _ _ _ _ _ _]
+      ]
     end
     let(:chess_board) { ChessBoard.new }
     it 'generates a blank chess board' do
