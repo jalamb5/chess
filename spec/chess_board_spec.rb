@@ -16,9 +16,17 @@ describe ChessBoard do
         %w[_ _ _ _ _ _ _ _]
       ]
     end
+    let(:pretty_board) do
+      "8 |_|_|_|_|_|_|_|_|\n7 |_|_|_|_|_|_|_|_|\n6 |_|_|_|_|_|_|_|_|\n5 |_|_|_|_|_|_|_|_|\n4 |_|_|_|_|_|_|_|_|\n3 |_|_|_|_|_|_|_|_|\n2 |_|_|_|_|_|_|_|_|\n1 |_|_|_|_|_|_|_|_|\n   a b c d e f g h"
+    end
     let(:chess_board) { ChessBoard.new }
+
     it 'generates a blank chess board' do
       expect(chess_board.board).to eq blank_board
+    end
+
+    it 'prints the board to the terminal in a human readable way' do
+      expect(chess_board.pretty_print).to eq pretty_board
     end
   end
 end
