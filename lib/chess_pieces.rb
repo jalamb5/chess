@@ -28,7 +28,7 @@ class Pawn < ChessPiece
 
   def initialize(starting_location, color)
     super(starting_location, color)
-    @symbol = '♙'
+    @symbol = color == :W ? '♙' : '♟'
     @en_passant = false
     @legal_moves = pawn_moves
   end
