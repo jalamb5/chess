@@ -5,14 +5,14 @@ require_relative '../lib/piece_movement'
 
 describe ChessPiece do
   context '#for' do
-    let(:pawn) { ChessPiece.for(Pawn, :W, ['a', 2]) }
+    let(:pawn) { ChessPiece.for(Pawn, :W, [0, 2]) }
 
     it 'creates a pawn' do
       expect(pawn).to be_an_instance_of Pawn
     end
 
     it 'places the pawn on a board space' do
-      expect(pawn.location).to eq ['a', 2]
+      expect(pawn.location).to eq [0, 2]
     end
 
     it 'makes the pawn white' do
@@ -25,9 +25,9 @@ describe ChessPiece do
   end
 
   describe Pawn do
-    let(:pawn) { Pawn.new(['a', 2], :W) }
-    let(:black_pawn) { Pawn.new(['a', 2], :B) }
-    let(:pawn_forward_two) { [['a', 3], ['a', 4]] }
+    let(:pawn) { Pawn.new([0, 2], :W) }
+    let(:black_pawn) { Pawn.new([0, 2], :B) }
+    let(:pawn_forward_two) { [[0, 3], [0, 4]] }
 
     context '#initialize' do
       it 'displays "♙" as symbol for white pawn' do
@@ -43,8 +43,8 @@ describe ChessPiece do
       end
 
       it 'can update its location' do
-        pawn.location = ['a', 3]
-        expect(pawn.location).to eq ['a', 3]
+        pawn.location = [0, 3]
+        expect(pawn.location).to eq [0, 3]
       end
 
       it 'generates a list of legal moves' do

@@ -5,8 +5,8 @@ require_relative '../lib/chess_pieces'
 
 describe Movement do
   context '#move' do
-    let(:new_location) { ['a', 3] }
-    let(:original_location) { ['a', 2] }
+    let(:new_location) { [0, 3] }
+    let(:original_location) { [0, 2] }
     let(:pawn) { ChessPiece.for(Pawn, :W, original_location) }
 
     it 'moves a piece from one location to another' do
@@ -25,7 +25,7 @@ describe Movement do
     end
 
     it 'disallows invalid moves' do
-      expect(pawn.move(['a', 21])).to eq('invalid move')
+      expect(pawn.move([0, 21])).to eq('invalid move')
     end
   end
 end
