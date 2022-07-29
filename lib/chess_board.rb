@@ -12,6 +12,10 @@ class ChessBoard
     build_board_string(board.length)
   end
 
+  def update_board(piece)
+    board[piece.location[0]][piece.location[1]] = piece.symbol
+  end
+
   private
 
   def build_board

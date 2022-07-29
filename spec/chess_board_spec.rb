@@ -33,4 +33,15 @@ describe ChessBoard do
       expect(chess_board.pretty_print).to eq pretty_board
     end
   end
+
+  context '#update_board' do
+    let(:chess_board) { ChessBoard.new }
+    let(:white_pawn) { Pawn.new([0, 0], :W) }
+
+    it 'displays a pawn on the board' do
+      chess_board.update_board(white_pawn)
+
+      expect(chess_board.board[0][0]).to eq('♙')
+    end
+  end
 end
