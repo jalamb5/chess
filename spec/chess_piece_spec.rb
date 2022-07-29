@@ -27,7 +27,7 @@ describe ChessPiece do
   describe Pawn do
     let(:pawn) { Pawn.new([0, 2], :W) }
     let(:black_pawn) { Pawn.new([0, 2], :B) }
-    let(:pawn_forward_two) { [[0, 3], [0, 4]] }
+    let(:pawn_forward_two) { [[1, 2], [2, 2]] }
 
     context '#initialize' do
       it 'displays "♙" as symbol for white pawn' do

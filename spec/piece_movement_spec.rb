@@ -5,7 +5,7 @@ require_relative '../lib/chess_pieces'
 
 describe Movement do
   context '#move' do
-    let(:new_location) { [0, 3] }
+    let(:new_location) { [1, 2] }
     let(:original_location) { [0, 2] }
     let(:pawn) { ChessPiece.for(Pawn, :W, original_location) }
 
