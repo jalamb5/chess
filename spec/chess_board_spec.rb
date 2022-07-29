@@ -38,10 +38,18 @@ describe ChessBoard do
     let(:chess_board) { ChessBoard.new }
     let(:white_pawn) { Pawn.new([0, 0], :W) }
 
-    it 'displays a pawn on the board' do
+    it 'displays a white pawn on the board' do
       chess_board.update_board(white_pawn)
 
       expect(chess_board.board[0][0]).to eq('♙')
+    end
+
+    it 'removes white pawn from previous location' do
+      chess_board.update_board(white_pawn)
+      white_pawn.move([1, 0])
+      chess_board.update_board(white_pawn)
+
+      expect(chess_board.board[0][0]).to eq('_')
     end
   end
 end

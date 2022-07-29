@@ -14,6 +14,7 @@ class ChessBoard
 
   def update_board(piece)
     board[piece.location[0]][piece.location[1]] = piece.symbol
+    board[piece.previous_location[0]][piece.previous_location[1]] = '_' unless piece.previous_location.nil?
   end
 
   private
