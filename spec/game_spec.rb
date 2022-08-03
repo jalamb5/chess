@@ -15,5 +15,9 @@ describe Game do
     it 'fills row 7 with black pawns' do
       expect(game.chess_board.board[1]).to eq row_seven
     end
+
+    it 'creates a register of chess pieces' do
+      expect(game.registry.length).to eq(16)
+    end
   end
 end
