@@ -18,5 +18,9 @@ class Game
       pawn = ChessPiece.for(Pawn, :W, [6, column])
       chess_board.board[6][column] = pawn.symbol
     end
+    chess_board.board[1].each_with_index do |_item, column|
+      pawn = ChessPiece.for(Pawn, :B, [1, column])
+      chess_board.board[1][column] = pawn.symbol
+    end
   end
 end
