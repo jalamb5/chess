@@ -5,10 +5,10 @@ require_relative '../lib/game'
 describe Game do
   context '#initialize' do
     let(:game) { Game.new }
-    let(:blank_board) { Array.new(8) { Array.new(8) { '_' } } }
+    let(:row_two) { Array.new(8, '♙') }
 
-    it 'makes a board' do
-      expect(game.chess_board.board).to eq blank_board
+    it 'fills row 2 with white pawns' do
+      expect(game.chess_board.board[6]).to eq row_two
     end
   end
 end

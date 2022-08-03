@@ -8,5 +8,15 @@ class Game
 
   def initialize
     @chess_board = ChessBoard.new
+    fill_board
+  end
+
+  private
+
+  def fill_board
+    chess_board.board[6].each_with_index do |_item, column|
+      pawn = ChessPiece.for(Pawn, :W, [6, column])
+      chess_board.board[6][column] = pawn.symbol
+    end
   end
 end
