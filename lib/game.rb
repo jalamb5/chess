@@ -14,13 +14,14 @@ class Game
   private
 
   def fill_board
-    chess_board.board[6].each_with_index do |_item, column|
-      pawn = ChessPiece.for(Pawn, :W, [6, column])
-      chess_board.board[6][column] = pawn.symbol
-    end
-    chess_board.board[1].each_with_index do |_item, column|
-      pawn = ChessPiece.for(Pawn, :B, [1, column])
-      chess_board.board[1][column] = pawn.symbol
+    add_piece(6, Pawn, :W)
+    add_piece(1, Pawn, :B)
+  end
+
+  def add_piece(row, piece_type, color)
+    chess_board.board[row].each_with_index do |_item, column|
+      piece = ChessPiece.for(piece_type, color, [row, column])
+      chess_board.board[row][column] = piece.symbol
     end
   end
 end
