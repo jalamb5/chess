@@ -71,8 +71,8 @@ class King < ChessPiece
   def king_moves
     possible_moves = []
     KING_MOVE_ONE.each do |move|
-      possible_moves << [location[0] + move[0], location[1] + move[1]]
+      possible_moves << on_board([location[0] + move[0], location[1] + move[1]])
     end
-    possible_moves
+    possible_moves.compact
   end
 end
