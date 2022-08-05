@@ -52,4 +52,14 @@ describe ChessPiece do
       end
     end
   end
+
+  describe King do
+    let(:white_king) { King.new([0, 2], :W) }
+
+    context '#initialize' do
+      it 'displays "♔" symbol for white king' do
+        expect(white_king.symbol).to eq '♔'
+      end
+    end
+  end
 end

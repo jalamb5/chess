@@ -39,3 +39,12 @@ class Pawn < ChessPiece
     has_moved ? [location[0] + 1, location[1]] : [[location[0] + 1, location[1]], [location[0] + 2, location[1]]]
   end
 end
+
+class King < ChessPiece
+  attr_reader :symbol, :legal_moves
+
+  def initialize(starting_location, color)
+    super(starting_location, color)
+    @symbol = color == :W ? '♔' : '♚'
+  end
+end
