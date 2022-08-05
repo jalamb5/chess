@@ -26,6 +26,9 @@ class Pawn < ChessPiece
   attr_reader :symbol, :legal_moves
   attr_accessor :en_passant
 
+  PAWN_MOVE_ONE = [[1, 0], [-1, 0]].freeze
+  PAWN_MOVE_TWO = [[2, 0], [-2, 0], [1, 0], [-1, 0]].freeze
+
   def initialize(starting_location, color)
     super(starting_location, color)
     @symbol = color == :W ? '♙' : '♟'
@@ -36,7 +39,12 @@ class Pawn < ChessPiece
   private
 
   def pawn_moves
-    has_moved ? [location[0] + 1, location[1]] : [[location[0] + 1, location[1]], [location[0] + 2, location[1]]]
+    possible_moves = []
+    move_set = has_moved ? PAWN_MOVE_ONE : PAWN_MOVE_TWO
+    move_set.each do |move|
+      possible_moves << [location[0] + move[0], location[1] + move[1]]
+    end
+    possible_moves
   end
 end
 
