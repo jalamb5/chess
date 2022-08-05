@@ -9,8 +9,10 @@ class ChessPiece
 
   include Movement
 
+  BOARD_RANGE = (0..8).freeze
+
   def initialize(starting_location, color)
-    @location = starting_location
+    @location = on_board(starting_location)
     @previous_location = nil
     @color = color
     @has_moved = false
@@ -18,6 +20,10 @@ class ChessPiece
 
   def self.for(type, color, location)
     const_get(type.to_s).new(location, color)
+  end
+
+  def on_board(location)
+    return location unless !BOARD_RANGE.include?(location[0]) || !BOARD_RANGE.include?(location[1])
   end
 end
 
@@ -42,12 +48,13 @@ class Pawn < ChessPiece
     possible_moves = []
     move_set = has_moved ? PAWN_MOVE_ONE : PAWN_MOVE_TWO
     move_set.each do |move|
-      possible_moves << [location[0] + move[0], location[1] + move[1]]
+      possible_moves << on_board([location[0] + move[0], location[1] + move[1]])
     end
-    possible_moves
+    possible_moves.compact
   end
 end
 
+# King specific values
 class King < ChessPiece
   attr_reader :symbol, :legal_moves
 

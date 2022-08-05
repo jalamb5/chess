@@ -27,9 +27,5 @@ describe Movement do
     it 'disallows invalid moves' do
       expect(pawn.move([0, 21])).to eq('invalid move')
     end
-
-    xit 'requires the piece to remain on the board' do
-      expect()
-    end
   end
 end
