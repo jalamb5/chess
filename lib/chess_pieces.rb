@@ -43,8 +43,21 @@ end
 class King < ChessPiece
   attr_reader :symbol, :legal_moves
 
+  KING_MOVE_ONE = [[0, 1], [0, -1], [1, 0], [-1, 0]].freeze
+
   def initialize(starting_location, color)
     super(starting_location, color)
     @symbol = color == :W ? '♔' : '♚'
+    @legal_moves = king_moves
+  end
+
+  private
+
+  def king_moves
+    possible_moves = []
+    KING_MOVE_ONE.each do |move|
+      possible_moves << [location[0] + move[0], location[1] + move[1]]
+    end
+    possible_moves
   end
 end

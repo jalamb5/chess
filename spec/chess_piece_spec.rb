@@ -55,10 +55,25 @@ describe ChessPiece do
 
   describe King do
     let(:white_king) { King.new([0, 2], :W) }
+    let(:black_king) { King.new([1, 2], :B) }
+    let(:king_moves) { [[0, 3], [0, 1], [1, 2], [-1, 2]] }
 
     context '#initialize' do
       it 'displays "♔" symbol for white king' do
         expect(white_king.symbol).to eq '♔'
+      end
+
+      it 'displays "♚" symbol for black king' do
+        expect(black_king.symbol).to eq '♚'
+      end
+
+      it 'can update its location' do
+        white_king.location = [1, 2]
+        expect(white_king.location).to eq [1, 2]
+      end
+
+      it 'generates a list of legal moves' do
+        expect(white_king.legal_moves).to eq king_moves
       end
     end
   end
