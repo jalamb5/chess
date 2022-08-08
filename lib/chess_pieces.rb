@@ -81,5 +81,26 @@ end
 
 # Queen specific values
 class Queen < ChessPiece
-  
+  attr_reader :symbol, :legal_moves
+
+  QUEEN_MOVE = Array.new(8) { Array.new(8) }
+
+  def initialize(starting_location, color)
+    super(starting_location, color)
+    @symbol = color == :W ? '♕' : '♛'
+    @legal_moves = queen_moves
+  end
+
+  private
+
+  def queen_moves
+    possible_moves = []
+    QUEEN_MOVE.each_with_index do |item, row|
+      item.each_index do |column|
+        possible_moves << on_board([location[0] + row, location[1] + column])
+        possible_moves << on_board([location[0] - row, location[1] - column])
+      end
+    end
+    possible_moves.compact
+  end
 end
