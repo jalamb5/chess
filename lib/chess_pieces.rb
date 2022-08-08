@@ -101,6 +101,6 @@ class Queen < ChessPiece
         possible_moves << on_board([location[0] - row, location[1] - column])
       end
     end
-    possible_moves.compact
+    possible_moves.compact.uniq
   end
 end
