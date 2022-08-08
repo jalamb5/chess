@@ -25,8 +25,8 @@ describe ChessPiece do
   end
 
   describe Pawn do
-    let(:pawn) { Pawn.new([0, 2], :W) }
-    let(:black_pawn) { Pawn.new([0, 2], :B) }
+    let(:pawn) { described_class.new([0, 2], :W) }
+    let(:black_pawn) { described_class.new([0, 2], :B) }
     let(:pawn_forward_two) { [[2, 2], [1, 2]] }
 
     context '#initialize' do
@@ -54,8 +54,8 @@ describe ChessPiece do
   end
 
   describe King do
-    let(:white_king) { King.new([0, 2], :W) }
-    let(:black_king) { King.new([1, 2], :B) }
+    let(:white_king) { described_class.new([0, 2], :W) }
+    let(:black_king) { described_class.new([1, 2], :B) }
     let(:king_moves) { [[0, 3], [0, 1], [1, 2]] }
 
     context '#initialize' do
@@ -74,6 +74,35 @@ describe ChessPiece do
 
       it 'generates a list of legal moves' do
         expect(white_king.legal_moves).to eq king_moves
+      end
+
+      it 'is not in check' do
+        expect(white_king.check).to eq false
+      end
+    end
+  end
+
+  describe Queen do
+    let(:white_queen) { described_class.new([0, 2], :W) }
+    let(:black_queen) { described_class.new([1, 2], :B) }
+    let(:queen_moves) { [[0, 3], [0, 1], [1, 2]] }
+
+    context '#initialize' do
+      it 'displays "♔" symbol for white queen' do
+        expect(white_queen.symbol).to eq '♕'
+      end
+
+      it 'displays "♚" symbol for black queen' do
+        expect(black_queen.symbol).to eq '♛'
+      end
+
+      it 'can update its location' do
+        white_queen.location = [1, 2]
+        expect(white_queen.location).to eq [1, 2]
+      end
+
+      it 'generates a list of legal moves' do
+        expect(white_queen.legal_moves).to eq queen_moves
       end
     end
   end

@@ -57,6 +57,7 @@ end
 # King specific values
 class King < ChessPiece
   attr_reader :symbol, :legal_moves
+  attr_accessor :check
 
   KING_MOVE_ONE = [[0, 1], [0, -1], [1, 0], [-1, 0]].freeze
 
@@ -64,6 +65,7 @@ class King < ChessPiece
     super(starting_location, color)
     @symbol = color == :W ? '♔' : '♚'
     @legal_moves = king_moves
+    @check = false
   end
 
   private
@@ -75,4 +77,9 @@ class King < ChessPiece
     end
     possible_moves.compact
   end
+end
+
+# Queen specific values
+class Queen < ChessPiece
+  
 end
