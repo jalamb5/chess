@@ -6,6 +6,13 @@ require_relative '../lib/chess_board'
 class Game
   attr_accessor :chess_board, :registry
 
+  NEW_GAME_LOCATIONS = [
+    [[7, 4], King, :W],
+    [[0, 4], King, :B],
+    [[7, 3], Queen, :W],
+    [[0, 3], Queen, :B]
+  ].freeze
+
   def initialize
     @chess_board = ChessBoard.new
     @registry = []
@@ -17,6 +24,7 @@ class Game
   def fill_board
     fill_row(6, Pawn, :W)
     fill_row(1, Pawn, :B)
+    NEW_GAME_LOCATIONS.each { |piece| add_piece(piece[0], piece[1], piece[2]) }
   end
 
   def fill_row(row, piece_type, color)
@@ -25,5 +33,11 @@ class Game
       registry << piece
       chess_board.board[row][column] = piece.symbol
     end
+  end
+
+  def add_piece(location, piece_type, color)
+    piece = ChessPiece.for(piece_type, color, location)
+    registry << piece
+    chess_board.board[location[0]][location[1]] = piece.symbol
   end
 end
