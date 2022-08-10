@@ -15,11 +15,11 @@ class Game
   private
 
   def fill_board
-    add_piece(6, Pawn, :W)
-    add_piece(1, Pawn, :B)
+    fill_row(6, Pawn, :W)
+    fill_row(1, Pawn, :B)
   end
 
-  def add_piece(row, piece_type, color)
+  def fill_row(row, piece_type, color)
     chess_board.board[row].each_with_index do |_item, column|
       piece = ChessPiece.for(piece_type, color, [row, column])
       registry << piece
