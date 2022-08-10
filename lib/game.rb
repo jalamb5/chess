@@ -17,6 +17,7 @@ class Game
     @chess_board = ChessBoard.new
     @registry = []
     fill_board
+    # puts "\n#{chess_board.pretty_print}"
   end
 
   private
