@@ -33,7 +33,7 @@ describe Game do
     end
 
     it 'creates a register of chess pieces' do
-      expect(game.registry.length).to eq(26)
+      expect(game.registry.length).to eq(32)
     end
 
     it 'adds white king to board' do

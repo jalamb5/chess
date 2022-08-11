@@ -13,17 +13,23 @@ class Game
     [[0, 3], Queen, :B],
     [[7, 0], Rook, :W],
     [[0, 0], Rook, :B],
+    [[7, 7], Rook, :W],
+    [[0, 7], Rook, :B],
     [[7, 2], Bishop, :W],
     [[0, 2], Bishop, :B],
+    [[7, 5], Bishop, :W],
+    [[0, 5], Bishop, :B],
     [[7, 1], Knight, :W],
-    [[0, 1], Knight, :B]
+    [[0, 1], Knight, :B],
+    [[7, 6], Knight, :W],
+    [[0, 6], Knight, :B]
   ].freeze
 
   def initialize
     @chess_board = ChessBoard.new
     @registry = []
     fill_board
-    # puts "\n#{chess_board.pretty_print}"
+    puts "\n#{chess_board.pretty_print}"
   end
 
   private
