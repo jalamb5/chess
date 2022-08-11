@@ -104,3 +104,13 @@ class Queen < ChessPiece
     possible_moves.compact.uniq
   end
 end
+
+# Rook specific values
+class Rook < ChessPiece
+  attr_reader :symbol, :legal_moves
+
+  def initialize(starting_location, color)
+    super(starting_location, color)
+    @symbol = color == :W ? '♖' : '♜'
+  end
+end

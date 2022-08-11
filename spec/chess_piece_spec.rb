@@ -106,4 +106,19 @@ describe ChessPiece do
       end
     end
   end
+
+  describe Rook do
+    let(:white_rook) { described_class.new([0, 2], :W) }
+    let(:black_rook) { described_class.new([1, 2], :B) }
+
+    context '#initialize' do
+      it 'displays "" symbol for white rook' do
+        expect(white_rook.symbol).to eq '♖'
+      end
+
+      it 'displays "♜" symbol for black rook' do
+        expect(black_rook.symbol).to eq '♜'
+      end
+    end
+  end
 end
