@@ -140,6 +140,7 @@ describe ChessPiece do
   describe Knight do
     let(:white_knight) { described_class.new([0, 2], :W) }
     let(:black_knight) { described_class.new([1, 2], :B) }
+    let(:knight_moves) { [[1, 0], [2, 1], [2, 3], [1, 4]] }
 
     context '#initialize' do
       it 'displays "♘" symbol for white knight' do
@@ -148,6 +149,10 @@ describe ChessPiece do
 
       it 'displays "♞" symbol for black knight' do
         expect(black_knight.symbol).to eq '♞'
+      end
+
+      it 'generates a list of legal moves' do
+        expect(white_knight.legal_moves).to eq knight_moves
       end
     end
   end
