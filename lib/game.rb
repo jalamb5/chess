@@ -10,7 +10,13 @@ class Game
     [[7, 4], King, :W],
     [[0, 4], King, :B],
     [[7, 3], Queen, :W],
-    [[0, 3], Queen, :B]
+    [[0, 3], Queen, :B],
+    [[7, 0], Rook, :W],
+    [[0, 0], Rook, :B],
+    [[7, 2], Bishop, :W],
+    [[0, 2], Bishop, :B],
+    [[7, 1], Knight, :W],
+    [[0, 1], Knight, :B]
   ].freeze
 
   def initialize
