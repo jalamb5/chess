@@ -12,7 +12,13 @@ describe Game do
         white_king: '♔',
         black_king: '♚',
         white_queen: '♕',
-        black_queen: '♛'
+        black_queen: '♛',
+        white_rook: '♖',
+        black_rook: '♜',
+        white_bishop: '♗',
+        black_bishop: '♝',
+        white_knight: '♘',
+        black_knight: '♞'
       }
     end
     let(:row_two) { Array.new(8, pieces[:white_pawn]) }
