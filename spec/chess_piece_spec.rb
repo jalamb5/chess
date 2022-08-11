@@ -112,12 +112,42 @@ describe ChessPiece do
     let(:black_rook) { described_class.new([1, 2], :B) }
 
     context '#initialize' do
-      it 'displays "" symbol for white rook' do
+      it 'displays "♖" symbol for white rook' do
         expect(white_rook.symbol).to eq '♖'
       end
 
       it 'displays "♜" symbol for black rook' do
         expect(black_rook.symbol).to eq '♜'
+      end
+    end
+  end
+
+  describe Bishop do
+    let(:white_bishop) { described_class.new([0, 2], :W) }
+    let(:black_bishop) { described_class.new([1, 2], :B) }
+
+    context '#initialize' do
+      it 'displays "♗" symbol for white bishop' do
+        expect(white_bishop.symbol).to eq '♗'
+      end
+
+      it 'displays "♝" symbol for black bishop' do
+        expect(black_bishop.symbol).to eq '♝'
+      end
+    end
+  end
+
+  describe Knight do
+    let(:white_knight) { described_class.new([0, 2], :W) }
+    let(:black_knight) { described_class.new([1, 2], :B) }
+
+    context '#initialize' do
+      it 'displays "♘" symbol for white knight' do
+        expect(white_knight.symbol).to eq '♘'
+      end
+
+      it 'displays "♞" symbol for black knight' do
+        expect(black_knight.symbol).to eq '♞'
       end
     end
   end
