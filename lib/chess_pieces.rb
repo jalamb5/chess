@@ -129,8 +129,21 @@ end
 class Knight < ChessPiece
   attr_reader :symbol, :legal_moves
 
+  KNIGHT_MOVE = [[-1, 2], [-2, 1], [-2, -1], [-1, -2], [1, -2], [2, -1], [2, 1], [1, 2]].freeze
+
   def initialize(starting_location, color)
     super(starting_location, color)
     @symbol = color == :W ? '♘' : '♞'
+    @legal_moves = knight_moves
+  end
+
+  private
+
+  def knight_moves
+    possible_moves = []
+    KNIGHT_MOVE.each do |move|
+      possible_moves << on_board([location[0] + move[0], location[1] + move[1]])
+    end
+    possible_moves.compact
   end
 end
