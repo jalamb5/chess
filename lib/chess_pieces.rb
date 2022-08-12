@@ -9,7 +9,7 @@ class ChessPiece
 
   include Movement
 
-  BOARD_RANGE = (0..8).freeze
+  BOARD_RANGE = (0..7).freeze
 
   def initialize(starting_location, color)
     @location = on_board(starting_location)
