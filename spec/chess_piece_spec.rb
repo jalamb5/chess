@@ -130,6 +130,7 @@ describe ChessPiece do
   describe Bishop do
     let(:white_bishop) { described_class.new([0, 2], :W) }
     let(:black_bishop) { described_class.new([1, 2], :B) }
+    let(:bishop_moves) { [[1, 3], [1, 1], [2, 4], [2, 0], [3, 5], [4, 6], [5, 7], [6, 8]] }
 
     context '#initialize' do
       it 'displays "♗" symbol for white bishop' do
@@ -138,6 +139,10 @@ describe ChessPiece do
 
       it 'displays "♝" symbol for black bishop' do
         expect(black_bishop.symbol).to eq '♝'
+      end
+
+      it 'generates a list of legal moves' do
+        expect(white_bishop.legal_moves).to eq bishop_moves
       end
     end
   end

@@ -135,9 +135,30 @@ end
 class Bishop < ChessPiece
   attr_reader :symbol, :legal_moves
 
+  BISHOP_MOVE = [
+    [1, 1], [-1, -1], [1, -1], [-1, 1],
+    [2, 2], [-2, -2], [2, -2], [-2, 2],
+    [3, 3], [-3, -3], [3, -3], [-3, 3],
+    [4, 4], [-4, -4], [4, -4], [-4, 4],
+    [5, 5], [-5, -5], [5, -5], [-5, 5],
+    [6, 6], [-6, -6], [6, -6], [-6, 6],
+    [7, 7], [-7, -7], [7, -7], [-7, 7]
+  ].freeze
+
   def initialize(starting_location, color)
     super(starting_location, color)
     @symbol = color == :W ? '♗' : '♝'
+    @legal_moves = bishop_moves
+  end
+
+  private
+
+  def bishop_moves
+    possible_moves = []
+    BISHOP_MOVE.each do |move|
+      possible_moves << on_board([location[0] + move[0], location[1] + move[1]])
+    end
+    possible_moves.compact.uniq
   end
 end
 
