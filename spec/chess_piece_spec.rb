@@ -110,6 +110,7 @@ describe ChessPiece do
   describe Rook do
     let(:white_rook) { described_class.new([0, 2], :W) }
     let(:black_rook) { described_class.new([1, 2], :B) }
+    let(:rook_moves) { [[0, 0], [0, 1], [0, 2], [1, 2], [0, 3], [2, 2], [0, 4], [3, 2], [0, 5], [4, 2], [0, 6], [5, 2], [0, 7], [6, 2], [0, 8], [7, 2]] }
 
     context '#initialize' do
       it 'displays "♖" symbol for white rook' do
@@ -118,6 +119,10 @@ describe ChessPiece do
 
       it 'displays "♜" symbol for black rook' do
         expect(black_rook.symbol).to eq '♜'
+      end
+
+      it 'generates a list of legal moves' do
+        expect(white_rook.legal_moves).to eq rook_moves
       end
     end
   end

@@ -109,9 +109,25 @@ end
 class Rook < ChessPiece
   attr_reader :symbol, :legal_moves
 
+  ROOK_MOVE = (-7..7).freeze
+
   def initialize(starting_location, color)
     super(starting_location, color)
     @symbol = color == :W ? '♖' : '♜'
+    @legal_moves = rook_moves
+  end
+
+  private
+
+  def rook_moves
+    possible_moves = []
+    ROOK_MOVE.each do |move|
+      # move vertically
+      possible_moves << on_board([location[0] + move, location[1]])
+      # move horizontally
+      possible_moves << on_board([location[0], location[1] + move])
+    end
+    possible_moves.compact.uniq
   end
 end
 
