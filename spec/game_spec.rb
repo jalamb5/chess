@@ -40,4 +40,20 @@ describe Game do
       expect(game.chess_board.board[7][4]).to eq pieces[:white_king]
     end
   end
+
+  context '#play' do
+    subject { Game.new }
+    let(:welcome_message) { "Welcome to Chess.\n#{subject.chess_board.pretty_print}\nWhite goes first" }
+    xit 'puts a welcome message' do
+      expect { subject.play }.to output(welcome_message).to_stdout
+    end
+  end
+
+  context '#game_over' do
+    subject { Game.new }
+
+    it 'checks Kings for checkmate' do
+      expect(subject.game_over).to eq false
+    end
+  end
 end

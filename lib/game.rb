@@ -32,6 +32,11 @@ class Game
     # puts "\n#{chess_board.pretty_print}"
   end
 
+  def play
+    puts "Welcome to Chess.\n#{chess_board.pretty_print}\nWhite goes first"
+    game_loop
+  end
+
   private
 
   def fill_board
@@ -52,5 +57,23 @@ class Game
     piece = ChessPiece.for(piece_type, color, location)
     registry << piece
     chess_board.board[location[0]][location[1]] = piece.symbol
+  end
+
+  def game_loop
+    return if game_over
+
+    puts "#{color}: Select a piece to move. letter, location"
+  end
+
+  def game_over
+    check = []
+    registry.each do |piece|
+      check << piece if piece.instance_of?(King)
+    end
+    if check[0].check == true || check[1].check == true
+      true
+    else
+      false
+    end
   end
 end
