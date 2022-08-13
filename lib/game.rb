@@ -35,6 +35,7 @@ class Game
   def play
     puts "Welcome to Chess.\n#{chess_board.pretty_print}\nWhite goes first"
     game_loop
+    puts 'Thanks for playing.'
   end
 
   private
