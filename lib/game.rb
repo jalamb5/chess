@@ -64,7 +64,15 @@ class Game
   def game_loop
     return if game_over
 
-    puts "#{color}: Select a piece to move. letter, location"
+    color = 'White'
+
+    puts "#{color}: Select a piece to move."
+    puts 'Choose column: [a-h] '
+    column = gets.chomp
+    input_validator(column)
+    puts 'Choose row: [1-8] '
+    row = gets.chomp
+    input_validator(row)
   end
 
   def king_in_check
@@ -86,5 +94,16 @@ class Game
     kings.each do |king|
       return king if king.legal_moves.nil?
     end
+  end
+
+  # convert user-friendly input options to zero indexed values
+  def input_validator(location)
+    input_mapper = {
+      'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7,
+      '1': 0, '2': 1, '3': 2, '4': 3, '5': 4, '6': 5, '7': 6, '8': 7
+    }
+    return 'invalid selection' unless input_mapper[location]
+
+    input_mapper[location]
   end
 end
