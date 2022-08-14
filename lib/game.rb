@@ -35,6 +35,7 @@ class Game
   def play
     puts "Welcome to Chess.\n#{chess_board.pretty_print}\nWhite goes first"
     game_loop
+    puts "#{game_over.color} has no legal moves."
     puts 'Thanks for playing.'
   end
 
@@ -66,15 +67,24 @@ class Game
     puts "#{color}: Select a piece to move. letter, location"
   end
 
-  def game_over
+  def king_in_check
     check = []
     registry.each do |piece|
       check << piece if piece.instance_of?(King)
     end
     if check[0].check == true || check[1].check == true
-      true
+      check
     else
       false
+    end
+  end
+
+  def game_over
+    return unless king_in_check
+
+    kings = king_in_check
+    kings.each do |king|
+      return king if king.legal_moves.nil?
     end
   end
 end
