@@ -110,10 +110,11 @@ class Game
     parsed_location
   end
 
-  def select_location(color=nil)
+  def select_location(color = nil)
     location = []
 
     puts "#{color}: Select a piece to move." unless color.nil?
+    puts 'Move the piece to where?' if color.nil?
     puts 'Choose column: [a-h] '
     location << gets.chomp
     puts 'Choose row: [1-8] '
