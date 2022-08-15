@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../lib/chess_board'
+require_relative '../lib/chess_pieces'
 
 # Generate objects needed for game and gameloop
 class Game
@@ -62,17 +63,13 @@ class Game
   end
 
   def game_loop
-    return if game_over
+    until game_over
 
-    color = 'White'
+      color = 'White'
 
-    puts "#{color}: Select a piece to move."
-    puts 'Choose column: [a-h] '
-    column = gets.chomp
-    input_validator(column)
-    puts 'Choose row: [1-8] '
-    row = gets.chomp
-    input_validator(row)
+      select_piece_location(color)
+      select_move_location
+    end
   end
 
   def king_in_check
@@ -106,4 +103,16 @@ class Game
 
     input_mapper[location]
   end
+
+  def select_piece_location(color)
+    puts "#{color}: Select a piece to move."
+    puts 'Choose column: [a-h] '
+    column = gets.chomp
+    input_validator(column)
+    puts 'Choose row: [1-8] '
+    row = gets.chomp
+    input_validator(row)
+  end
 end
+
+Game.new.play
