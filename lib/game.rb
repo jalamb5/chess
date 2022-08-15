@@ -68,6 +68,8 @@ class Game
       color = 'White'
 
       piece_location = select_location(color)
+      piece = piece_lookup(piece_location)
+      p piece
       move_location = select_location
     end
   end
@@ -97,7 +99,7 @@ class Game
   def input_validator(location)
     input_mapper = {
       'a' => 0, 'b' => 1, 'c' => 2, 'd' => 3, 'e' => 4, 'f' => 5, 'g' => 6, 'h' => 7,
-      '1' => 0, '2' => 1, '3' => 2, '4' => 3, '5' => 4, '6' => 5, '7' => 6, '8' => 7
+      '1' => 7, '2' => 6, '3' => 5, '4' => 4, '5' => 3, '6' => 2, '7' => 1, '8' => 0
     }
     parsed_location = []
 
@@ -107,7 +109,7 @@ class Game
       parsed_location << input_mapper[value]
     end
 
-    parsed_location
+    parsed_location.reverse
   end
 
   def select_location(color = nil)
@@ -120,6 +122,12 @@ class Game
     puts 'Choose row: [1-8] '
     location << gets.chomp.to_s
     input_validator(location)
+  end
+
+  def piece_lookup(location)
+    registry.each do |piece|
+      return piece if piece.location == location
+    end
   end
 end
 
