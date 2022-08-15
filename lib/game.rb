@@ -67,8 +67,8 @@ class Game
 
       color = 'White'
 
-      select_piece_location(color)
-      select_move_location
+      piece_location = select_location(color)
+      move_location = select_location
     end
   end
 
@@ -96,22 +96,29 @@ class Game
   # convert user-friendly input options to zero indexed values
   def input_validator(location)
     input_mapper = {
-      'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7,
-      '1': 0, '2': 1, '3': 2, '4': 3, '5': 4, '6': 5, '7': 6, '8': 7
+      'a' => 0, 'b' => 1, 'c' => 2, 'd' => 3, 'e' => 4, 'f' => 5, 'g' => 6, 'h' => 7,
+      '1' => 0, '2' => 1, '3' => 2, '4' => 3, '5' => 4, '6' => 5, '7' => 6, '8' => 7
     }
-    return 'invalid selection' unless input_mapper[location]
+    parsed_location = []
 
-    input_mapper[location]
+    location.each do |value|
+      return 'invalid selection' unless input_mapper[value]
+
+      parsed_location << input_mapper[value]
+    end
+
+    parsed_location
   end
 
-  def select_piece_location(color)
-    puts "#{color}: Select a piece to move."
+  def select_location(color=nil)
+    location = []
+
+    puts "#{color}: Select a piece to move." unless color.nil?
     puts 'Choose column: [a-h] '
-    column = gets.chomp
-    input_validator(column)
+    location << gets.chomp
     puts 'Choose row: [1-8] '
-    row = gets.chomp
-    input_validator(row)
+    location << gets.chomp.to_s
+    input_validator(location)
   end
 end
 
