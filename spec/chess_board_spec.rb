@@ -57,10 +57,12 @@ describe ChessBoard do
 
     it 'removes the black pawn when captured' do
       chess_board.update_board(registry)
+      puts chess_board.pretty_print
       white_pawn.move([2, 0], registry)
       chess_board.update_board(registry)
+      puts chess_board.pretty_print
 
-      expect(chess_board.board[2, 0]).to eq('♙')
+      expect(chess_board.board[2][0]).to eq('♙')
     end
   end
 end
