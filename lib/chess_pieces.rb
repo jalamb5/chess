@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../lib/piece_movement'
+require_relative '../lib/piece_capture'
 
 # Hold values common to all chess pieces
 class ChessPiece
@@ -8,6 +9,7 @@ class ChessPiece
   attr_reader :color
 
   include Movement
+  include Capture
 
   BOARD_RANGE = (0..7).freeze
 

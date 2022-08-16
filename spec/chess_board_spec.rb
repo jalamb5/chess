@@ -37,6 +37,7 @@ describe ChessBoard do
   context '#update_board' do
     let(:chess_board) { ChessBoard.new }
     let(:white_pawn) { Pawn.new([0, 0], :W) }
+    let(:registry) { [white_pawn] }
 
     it 'displays a white pawn on the board' do
       chess_board.update_board(white_pawn)
@@ -46,7 +47,7 @@ describe ChessBoard do
 
     it 'removes white pawn from previous location' do
       chess_board.update_board(white_pawn)
-      white_pawn.move([1, 0])
+      white_pawn.move([1, 0], registry)
       chess_board.update_board(white_pawn)
 
       expect(chess_board.board[0][0]).to eq('_')

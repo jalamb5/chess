@@ -2,7 +2,7 @@
 
 # Mixin for chess_pieces to handle updating location and verifying move legality for a given piece
 module Movement
-  def move(new_location)
+  def move(new_location, registry)
     return 'invalid move' unless legal(new_location)
 
     current_location = location
