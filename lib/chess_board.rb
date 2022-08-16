@@ -14,8 +14,9 @@ class ChessBoard
 
   def update_board(registry)
     registry.each do |piece|
-      place_piece(piece)
-      remove_piece(piece) unless piece.previous_location.nil?
+      place_piece(piece) unless piece.captured
+      clear_previous_square(piece) unless piece.previous_location.nil?
+      remove_piece(piece) if piece.captured
     end
   end
 
@@ -43,7 +44,11 @@ class ChessBoard
     board[piece.location[0]][piece.location[1]] = piece.symbol
   end
 
-  def remove_piece(piece)
+  def clear_previous_square(piece)
     board[piece.previous_location[0]][piece.previous_location[1]] = '_'
+  end
+
+  def remove_piece(piece)
+    board[piece.location[0]][piece.location[1]] = '_'
   end
 end

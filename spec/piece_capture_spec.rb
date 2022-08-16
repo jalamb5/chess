@@ -11,7 +11,7 @@ describe Capture do
 
     it 'marks a piece as captured' do
       capturing_pawn.move([1, 1], registry)
-      expect(captured_pawn.location).to eq(:Captured)
+      expect(captured_pawn.captured).to eq(true)
     end
   end
 end
