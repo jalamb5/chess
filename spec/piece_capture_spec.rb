@@ -9,7 +9,7 @@ describe Capture do
     let(:captured_pawn) { Pawn.new([1, 1], :B) }
     let(:registry) { [capturing_pawn, captured_pawn] }
 
-    it 'removes a captured piece from the game' do
+    it 'marks a piece as captured' do
       capturing_pawn.move([1, 1], registry)
       expect(captured_pawn.location).to eq(:Captured)
     end
