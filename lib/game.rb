@@ -70,7 +70,7 @@ class Game
       piece = piece_lookup(piece_location)
       move_location = select_location
       piece.move(move_location, registry)
-      chess_board.update_board(piece)
+      chess_board.update_board(registry)
       puts chess_board.pretty_print
 
       color = color == 'White' ? 'Black' : 'White'

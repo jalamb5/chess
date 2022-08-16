@@ -12,9 +12,11 @@ class ChessBoard
     build_board_string(board.length)
   end
 
-  def update_board(piece)
-    place_piece(piece)
-    remove_piece(piece) unless piece.previous_location.nil?
+  def update_board(registry)
+    registry.each do |piece|
+      place_piece(piece)
+      remove_piece(piece) unless piece.previous_location.nil?
+    end
   end
 
   private

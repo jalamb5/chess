@@ -40,15 +40,15 @@ describe ChessBoard do
     let(:registry) { [white_pawn] }
 
     it 'displays a white pawn on the board' do
-      chess_board.update_board(white_pawn)
+      chess_board.update_board(registry)
 
       expect(chess_board.board[0][0]).to eq('♙')
     end
 
     it 'removes white pawn from previous location' do
-      chess_board.update_board(white_pawn)
+      chess_board.update_board(registry)
       white_pawn.move([1, 0], registry)
-      chess_board.update_board(white_pawn)
+      chess_board.update_board(registry)
 
       expect(chess_board.board[0][0]).to eq('_')
     end
