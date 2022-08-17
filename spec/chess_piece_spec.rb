@@ -64,13 +64,9 @@ describe ChessPiece do
       end
 
       it 'can move forward 1 space after first move' do
-        p pawn.location
-        p pawn.legal_moves
-        pawn.move([1, 2], registry)
-        p pawn.location
         pawn.move([2, 2], registry)
-        p pawn.legal_moves
-        expect(pawn.location).to eq([2, 2])
+        pawn.move([3, 2], registry)
+        expect(pawn.location).to eq([3, 2])
       end
     end
   end
