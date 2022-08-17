@@ -10,6 +10,7 @@ module Movement
     self.location = new_location
     self.previous_location = current_location
     self.has_moved = true
+    self.legal_moves = moves
   end
 
   private

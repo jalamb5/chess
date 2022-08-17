@@ -32,8 +32,8 @@ end
 
 # Pawn specific values
 class Pawn < ChessPiece
-  attr_reader :symbol, :legal_moves
-  attr_accessor :en_passant
+  attr_reader :symbol
+  attr_accessor :en_passant, :legal_moves
 
   PAWN_MOVE_ONE = [[1, 0], [-1, 0]].freeze
   PAWN_MOVE_TWO = [[2, 0], [-2, 0], [1, 0], [-1, 0]].freeze
@@ -42,12 +42,10 @@ class Pawn < ChessPiece
     super(starting_location, color)
     @symbol = color == :W ? '♙' : '♟'
     @en_passant = false
-    @legal_moves = pawn_moves
+    @legal_moves = moves
   end
 
-  private
-
-  def pawn_moves
+  def moves
     possible_moves = []
     move_set = has_moved ? PAWN_MOVE_ONE : PAWN_MOVE_TWO
     move_set.each do |move|
@@ -59,21 +57,19 @@ end
 
 # King specific values
 class King < ChessPiece
-  attr_reader :symbol, :legal_moves
-  attr_accessor :check
+  attr_reader :symbol
+  attr_accessor :check, :legal_moves
 
   KING_MOVE_ONE = [[0, 1], [0, -1], [1, 0], [-1, 0]].freeze
 
   def initialize(starting_location, color)
     super(starting_location, color)
     @symbol = color == :W ? '♔' : '♚'
-    @legal_moves = king_moves
+    @legal_moves = moves
     @check = false
   end
 
-  private
-
-  def king_moves
+  def moves
     possible_moves = []
     KING_MOVE_ONE.each do |move|
       possible_moves << on_board([location[0] + move[0], location[1] + move[1]])
@@ -84,19 +80,18 @@ end
 
 # Queen specific values
 class Queen < ChessPiece
-  attr_reader :symbol, :legal_moves
+  attr_reader :symbol
+  attr_accessor :legal_moves
 
   QUEEN_MOVE = Array.new(8) { Array.new(8) }
 
   def initialize(starting_location, color)
     super(starting_location, color)
     @symbol = color == :W ? '♕' : '♛'
-    @legal_moves = queen_moves
+    @legal_moves = moves
   end
 
-  private
-
-  def queen_moves
+  def moves
     possible_moves = []
     QUEEN_MOVE.each_with_index do |item, row|
       item.each_index do |column|
@@ -110,19 +105,18 @@ end
 
 # Rook specific values
 class Rook < ChessPiece
-  attr_reader :symbol, :legal_moves
+  attr_reader :symbol
+  attr_accessor :legal_moves
 
   ROOK_MOVE = (-7..7).freeze
 
   def initialize(starting_location, color)
     super(starting_location, color)
     @symbol = color == :W ? '♖' : '♜'
-    @legal_moves = rook_moves
+    @legal_moves = moves
   end
 
-  private
-
-  def rook_moves
+  def moves
     possible_moves = []
     ROOK_MOVE.each do |move|
       # move vertically
@@ -136,7 +130,8 @@ end
 
 # Bishop specific values
 class Bishop < ChessPiece
-  attr_reader :symbol, :legal_moves
+  attr_reader :symbol
+  attr_accessor :legal_moves
 
   BISHOP_MOVE = [
     [1, 1], [-1, -1], [1, -1], [-1, 1],
@@ -151,12 +146,10 @@ class Bishop < ChessPiece
   def initialize(starting_location, color)
     super(starting_location, color)
     @symbol = color == :W ? '♗' : '♝'
-    @legal_moves = bishop_moves
+    @legal_moves = moves
   end
 
-  private
-
-  def bishop_moves
+  def moves
     possible_moves = []
     BISHOP_MOVE.each do |move|
       possible_moves << on_board([location[0] + move[0], location[1] + move[1]])
@@ -167,19 +160,18 @@ end
 
 # Knight specific values
 class Knight < ChessPiece
-  attr_reader :symbol, :legal_moves
+  attr_reader :symbol
+  attr_accessor :legal_moves
 
   KNIGHT_MOVE = [[-1, 2], [-2, 1], [-2, -1], [-1, -2], [1, -2], [2, -1], [2, 1], [1, 2]].freeze
 
   def initialize(starting_location, color)
     super(starting_location, color)
     @symbol = color == :W ? '♘' : '♞'
-    @legal_moves = knight_moves
+    @legal_moves = moves
   end
 
-  private
-
-  def knight_moves
+  def moves
     possible_moves = []
     KNIGHT_MOVE.each do |move|
       possible_moves << on_board([location[0] + move[0], location[1] + move[1]])

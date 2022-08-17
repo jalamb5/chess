@@ -26,8 +26,9 @@ describe ChessPiece do
 
   describe Pawn do
     let(:pawn) { described_class.new([0, 2], :W) }
-    let(:black_pawn) { described_class.new([0, 2], :B) }
+    let(:black_pawn) { described_class.new([7, 2], :B) }
     let(:pawn_forward_two) { [[2, 2], [1, 2]] }
+    let(:registry) { [pawn, black_pawn] }
 
     context '#initialize' do
       it 'displays "♙" as symbol for white pawn' do
@@ -49,6 +50,27 @@ describe ChessPiece do
 
       it 'generates a list of legal moves' do
         expect(pawn.legal_moves).to eq pawn_forward_two
+      end
+
+      it 'can move forward 2 spaces on first move' do
+        pawn.move([2, 2], registry)
+        expect(pawn.location).to eq([2, 2])
+      end
+
+      it 'can not move forward 2 spaces after first move' do
+        pawn.move([2, 2], registry)
+        pawn.move([4, 2], registry)
+        expect(pawn.location).to eq([2, 2])
+      end
+
+      it 'can move forward 1 space after first move' do
+        p pawn.location
+        p pawn.legal_moves
+        pawn.move([1, 2], registry)
+        p pawn.location
+        pawn.move([2, 2], registry)
+        p pawn.legal_moves
+        expect(pawn.location).to eq([2, 2])
       end
     end
   end
