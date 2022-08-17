@@ -25,12 +25,25 @@ describe ChessBoard do
 
   context '#pretty_print' do
     let(:chess_board) { ChessBoard.new }
+    let(:captured_rook) { Rook.new([1, 0], :W) }
+    let(:capturing_rook) { Rook.new([0, 0], :B) }
+    let(:registry) { [captured_rook, capturing_rook] }
     let(:pretty_board) do
       "8 |_|_|_|_|_|_|_|_|\n7 |_|_|_|_|_|_|_|_|\n6 |_|_|_|_|_|_|_|_|\n5 |_|_|_|_|_|_|_|_|\n4 |_|_|_|_|_|_|_|_|\n3 |_|_|_|_|_|_|_|_|\n2 |_|_|_|_|_|_|_|_|\n1 |_|_|_|_|_|_|_|_|\n   a b c d e f g h"
+    end
+    let(:captured_board) do
+      "\n---==Captured==---\n♖\n8 |_|_|_|_|_|_|_|_|\n7 |♜|_|_|_|_|_|_|_|\n6 |_|_|_|_|_|_|_|_|\n5 |_|_|_|_|_|_|_|_|\n4 |_|_|_|_|_|_|_|_|\n3 |_|_|_|_|_|_|_|_|\n2 |_|_|_|_|_|_|_|_|\n1 |_|_|_|_|_|_|_|_|\n   a b c d e f g h\n---==Captured==---\n"
     end
 
     it 'prints the board to the terminal in a human readable way' do
       expect(chess_board.pretty_print).to eq pretty_board
+    end
+
+    it 'shows captured pieces' do
+      capturing_rook.move([1, 0], registry)
+      chess_board.update_board(registry)
+
+      expect(chess_board.pretty_print).to eq captured_board
     end
   end
 

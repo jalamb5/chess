@@ -2,14 +2,15 @@
 
 # Make an 8x8 board to place pieces upon.
 class ChessBoard
-  attr_accessor :board
+  attr_accessor :board, :captured_pieces
 
   def initialize
     @board = build_board
+    @captured_pieces = []
   end
 
   def pretty_print
-    build_board_string(board.length)
+    build_pp_string(board.length)
   end
 
   def update_board(registry)
@@ -26,7 +27,19 @@ class ChessBoard
     Array.new(8) { Array.new(8) { '_' } }
   end
 
-  def build_board_string(board_length)
+  def build_pp_string(board_length)
+    pp_string = String.new
+    case captured_pieces
+    when captured_pieces.empty?
+      pp_string << show_chess_board(board_length)
+    else
+      pp_string << show_captured_pieces(captured_pieces, :W)
+      pp_string << show_chess_board(board_length)
+      pp_string << show_captured_pieces(captured_pieces, :B)
+    end
+  end
+
+  def show_chess_board(board_length)
     board_string = String.new
 
     board.each do |row|
@@ -38,6 +51,16 @@ class ChessBoard
       board_string << "|\n"
     end
     board_string << '   a b c d e f g h'
+  end
+
+  def show_captured_pieces(captured_pieces, color)
+    captured_string = String.new
+    captured_string << "\n---==Captured==---\n"
+
+    captured_pieces.each do |piece|
+      captured_string << piece.symbol if piece.color == color
+    end
+    captured_string << "\n"
   end
 
   def place_piece(piece)
@@ -52,5 +75,6 @@ class ChessBoard
     board[piece.location[0]][piece.location[1]] = '_' if board[piece.location[0]][piece.location[1]] == piece.symbol
     piece.location = nil
     piece.previous_location = nil
+    captured_pieces << piece
   end
 end
