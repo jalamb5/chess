@@ -49,31 +49,31 @@ describe ChessBoard do
 
   context '#update_board' do
     let(:chess_board) { ChessBoard.new }
-    let(:white_pawn) { Pawn.new([0, 0], :W) }
-    let(:black_pawn) { Pawn.new([2, 0], :B) }
+    let(:white_pawn) { Pawn.new([5, 5], :W) }
+    let(:black_pawn) { Pawn.new([6, 6], :B) }
     let(:registry) { [white_pawn, black_pawn] }
 
     it 'displays pawns on the board' do
       chess_board.update_board(registry)
 
-      expect(chess_board.board[0][0]).to eq('♙')
-      expect(chess_board.board[2][0]).to eq('♟')
+      expect(chess_board.board[5][5]).to eq('♙')
+      expect(chess_board.board[6][6]).to eq('♟')
     end
 
     it 'removes white pawn from previous location' do
       chess_board.update_board(registry)
-      white_pawn.move([1, 0], registry)
+      white_pawn.move([6, 5], registry)
       chess_board.update_board(registry)
 
-      expect(chess_board.board[0][0]).to eq('_')
+      expect(chess_board.board[5][5]).to eq('_')
     end
 
     it 'removes the black pawn when captured' do
       chess_board.update_board(registry)
-      white_pawn.move([2, 0], registry)
+      white_pawn.move([6, 6], registry)
       chess_board.update_board(registry)
 
-      expect(chess_board.board[2][0]).to eq('♙')
+      expect(chess_board.board[6][6]).to eq('♙')
     end
   end
 end
