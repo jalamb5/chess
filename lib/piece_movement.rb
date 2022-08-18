@@ -36,7 +36,7 @@ module Movement
     if legal_diagonals.include?(new_location)
       return true if location_occupied(new_location, registry) || en_passant
     else
-      legal_moves.include?(new_location)
+      legal_moves.include?(new_location) unless location_occupied(new_location, registry)
     end
   end
 end
