@@ -15,7 +15,7 @@ module Movement
 
   private
 
-  def legal(new_location, registry)
+  def legal(new_location, _registry)
     # return pawn_diagonal_capture(new_location, registry) if instance_of?(Pawn)
 
     # retrieve legal moveset from piece
