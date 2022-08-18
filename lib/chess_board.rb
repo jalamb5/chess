@@ -29,8 +29,7 @@ class ChessBoard
 
   def build_pp_string(board_length)
     pp_string = String.new
-    case captured_pieces
-    when captured_pieces.empty?
+    if captured_pieces.empty?
       pp_string << show_chess_board(board_length)
     else
       pp_string << show_captured_pieces(captured_pieces, :W)
