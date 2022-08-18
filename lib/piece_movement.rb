@@ -3,7 +3,7 @@
 # Mixin for chess_pieces to handle updating location and verifying move legality for a given piece
 module Movement
   def move(new_location, registry)
-    return 'invalid move' unless legal(new_location)
+    return 'invalid move' unless legal(new_location, registry)
 
     capture_piece(location_occupied(new_location, registry)) if location_occupied(new_location, registry)
     current_location = location
@@ -15,7 +15,9 @@ module Movement
 
   private
 
-  def legal(new_location)
+  def legal(new_location, registry)
+    # return pawn_diagonal_capture(new_location, registry) if instance_of?(Pawn)
+
     # retrieve legal moveset from piece
     # check new_location against possible legal moves
     legal_moves.include?(new_location)
@@ -27,5 +29,9 @@ module Movement
       return piece if piece.location == new_location
     end
     false
+  end
+
+  def pawn_diagonal_capture(new_location, registry)
+    location_occupied(new_location, registry)
   end
 end
