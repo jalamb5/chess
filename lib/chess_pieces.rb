@@ -35,8 +35,9 @@ class Pawn < ChessPiece
   attr_reader :symbol
   attr_accessor :en_passant, :legal_moves
 
-  PAWN_MOVE_ONE = [[1, 0], [-1, 0], [1, 1], [1, -1], [-1, 1], [-1, -1]].freeze
-  PAWN_MOVE_TWO = [[2, 0], [-2, 0], [1, 0], [-1, 0], [1, 1], [1, -1], [-1, 1], [-1, -1]].freeze
+  PAWN_MOVE_ONE = [[1, 0], [-1, 0]].freeze
+  PAWN_MOVE_TWO = [[2, 0], [-2, 0], [1, 0], [-1, 0]].freeze
+  PAWN_MOVE_DIAG  = [[1, 1], [1, -1], [-1, 1], [-1, -1]].freeze
 
   def initialize(starting_location, color)
     super(starting_location, color)
@@ -49,6 +50,14 @@ class Pawn < ChessPiece
     possible_moves = []
     move_set = has_moved ? PAWN_MOVE_ONE : PAWN_MOVE_TWO
     move_set.each do |move|
+      possible_moves << on_board([location[0] + move[0], location[1] + move[1]])
+    end
+    possible_moves.compact
+  end
+
+  def diag_moves
+    possible_moves = []
+    PAWN_MOVE_DIAG.each do |move|
       possible_moves << on_board([location[0] + move[0], location[1] + move[1]])
     end
     possible_moves.compact

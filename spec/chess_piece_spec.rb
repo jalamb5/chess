@@ -27,7 +27,7 @@ describe ChessPiece do
   describe Pawn do
     let(:pawn) { described_class.new([0, 2], :W) }
     let(:black_pawn) { described_class.new([7, 2], :B) }
-    let(:pawn_forward_two) { [[2, 2], [1, 2], [1, 3], [1, 1]] }
+    let(:pawn_forward_two) { [[2, 2], [1, 2]] }
     let(:registry) { [pawn, black_pawn] }
 
     context '#initialize' do

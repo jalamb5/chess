@@ -6,6 +6,7 @@ module Movement
     return 'invalid move' unless legal(new_location, registry)
 
     capture_piece(location_occupied(new_location, registry)) if location_occupied(new_location, registry)
+
     current_location = location
     self.location = new_location
     self.previous_location = current_location
@@ -15,8 +16,15 @@ module Movement
 
   private
 
-  def legal(new_location, _registry)
+  def legal(new_location, registry)
     # return pawn_diagonal_capture(new_location, registry) if instance_of?(Pawn)
+    if instance_of?(Pawn)
+      legal_diagonals = diag_moves
+      legal_moves.include?(new_location) unless legal_diagonals.include?(new_location)
+      return legal_diagonals.include?(new_location) if location_occupied(new_location, registry) || en_passant
+    else
+      legal_moves.include?(new_location)
+    end
 
     # retrieve legal moveset from piece
     # check new_location against possible legal moves
