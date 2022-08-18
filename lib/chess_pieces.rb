@@ -35,8 +35,8 @@ class Pawn < ChessPiece
   attr_reader :symbol
   attr_accessor :en_passant, :legal_moves
 
-  PAWN_MOVE_ONE = [[1, 0], [-1, 0]].freeze
-  PAWN_MOVE_TWO = [[2, 0], [-2, 0], [1, 0], [-1, 0]].freeze
+  PAWN_MOVE_ONE = [[1, 0], [-1, 0], [1, 1], [1, -1], [-1, 1], [-1, -1]].freeze
+  PAWN_MOVE_TWO = [[2, 0], [-2, 0], [1, 0], [-1, 0], [1, 1], [1, -1], [-1, 1], [-1, -1]].freeze
 
   def initialize(starting_location, color)
     super(starting_location, color)
