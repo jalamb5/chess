@@ -11,6 +11,7 @@ module Movement
     current_location = location
     self.location = new_location
     self.previous_location = current_location
+    mark_en_passant(registry) if instance_of?(Pawn)
     self.has_moved = true
     self.legal_moves = moves
     self.last_mover = true
@@ -48,5 +49,12 @@ module Movement
       return piece if piece.en_passant
     end
     false
+  end
+
+  def mark_en_passant(registry)
+    registry.each do |piece|
+      piece.en_passant = false if piece.instance_of?(Pawn)
+    end
+    self.en_passant = true if (location[0] - previous_location[0]).abs == 2
   end
 end
