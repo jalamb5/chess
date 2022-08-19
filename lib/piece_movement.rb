@@ -57,4 +57,13 @@ module Movement
     end
     self.en_passant = true if (location[0] - previous_location[0]).abs == 2
   end
+
+  def capture_en_passant(new_location, registry)
+    piece_to_capture = legal_en_passant(registry)
+    if piece_to_capture.color == :B
+      return piece_to_capture if piece_to_capture.location[0] - new_location[0] == 1 && piece_to_capture.location[1] - new_location[1] == 1
+    else
+      return piece_to_capture if piece_to_capture.location[0] + new_location[0] == 1 && piece_to_capture.location[1] + new_location[1] == 1
+    end
+  end
 end
