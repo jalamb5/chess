@@ -70,6 +70,7 @@ class Game
       piece = piece_lookup(piece_location)
       move_location = select_location
       piece.move(move_location, registry)
+      clear_last_mover(piece, registry)
       chess_board.update_board(registry)
       puts chess_board.pretty_print
 
@@ -130,6 +131,12 @@ class Game
   def piece_lookup(location)
     registry.each do |piece|
       return piece if piece.location == location
+    end
+  end
+
+  def clear_last_mover(last_moved_piece, registry)
+    registry.each do |piece|
+      piece.last_mover = false unless piece == last_moved_piece
     end
   end
 end

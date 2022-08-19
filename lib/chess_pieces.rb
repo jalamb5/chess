@@ -5,7 +5,7 @@ require_relative '../lib/piece_capture'
 
 # Hold values common to all chess pieces
 class ChessPiece
-  attr_accessor :location, :previous_location, :has_moved, :captured
+  attr_accessor :location, :previous_location, :has_moved, :captured, :last_mover
   attr_reader :color
 
   include Movement
@@ -19,6 +19,7 @@ class ChessPiece
     @color = color
     @has_moved = false
     @captured = false
+    @last_mover = false
   end
 
   def self.for(type, color, location)

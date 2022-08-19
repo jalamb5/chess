@@ -12,13 +12,14 @@ module Movement
     self.previous_location = current_location
     self.has_moved = true
     self.legal_moves = moves
+    self.last_mover = true
   end
 
   private
 
   def legal(new_location, registry)
     if instance_of?(Pawn)
-      pawn_rules(new_location, registry)
+      legal_pawn(new_location, registry)
     else
       legal_moves.include?(new_location)
     end
@@ -31,7 +32,7 @@ module Movement
     false
   end
 
-  def pawn_rules(new_location, registry)
+  def legal_pawn(new_location, registry)
     legal_diagonals = diag_moves
     if legal_diagonals.include?(new_location)
       return true if location_occupied(new_location, registry) || en_passant
