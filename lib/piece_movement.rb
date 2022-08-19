@@ -6,7 +6,7 @@ module Movement
     return 'invalid move' unless legal(new_location, registry)
 
     capture_piece(location_occupied(new_location, registry)) if location_occupied(new_location, registry)
-    capture_piece(legal_en_passant(registry)) if legal_en_passant(registry)
+    capture_piece(legal_en_passant(registry)) if legal_en_passant(registry) # TODO: check that new location is the loc directly behind the en passant pawn
 
     current_location = location
     self.location = new_location
