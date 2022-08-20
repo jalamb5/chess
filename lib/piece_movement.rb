@@ -6,7 +6,7 @@ module Movement
     return 'invalid move' unless legal(new_location, registry)
 
     capture_piece(location_occupied(new_location, registry)) if location_occupied(new_location, registry)
-    capture_piece(legal_en_passant(registry)) if legal_en_passant(registry) # TODO: check that new location is the loc directly behind the en passant pawn
+    capture_piece(capture_en_passant(new_location, registry)) if capture_en_passant(new_location, registry)
 
     current_location = location
     self.location = new_location
@@ -60,10 +60,13 @@ module Movement
 
   def capture_en_passant(new_location, registry)
     piece_to_capture = legal_en_passant(registry)
+    return piece_to_capture if piece_to_capture == false
+
     if piece_to_capture.color == :B
       return piece_to_capture if piece_to_capture.location[0] - new_location[0] == 1 && piece_to_capture.location[1] - new_location[1] == 1
     else
       return piece_to_capture if piece_to_capture.location[0] + new_location[0] == 1 && piece_to_capture.location[1] + new_location[1] == 1
     end
+    false
   end
 end

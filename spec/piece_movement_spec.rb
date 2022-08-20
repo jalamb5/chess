@@ -33,6 +33,7 @@ describe Movement do
     it 'allows a pawn to capture en passant' do
       pawn.move([2, 2], registry)
       en_passant_pawn.move([1, 2], registry)
+      expect(pawn.en_passant).to eq(true)
       expect(pawn.captured).to eq(true)
     end
   end
