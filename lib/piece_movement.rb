@@ -63,9 +63,9 @@ module Movement
     return piece_to_capture if piece_to_capture == false
 
     if piece_to_capture.color == :B
-      return piece_to_capture if piece_to_capture.location[0] - new_location[0] == 1 && piece_to_capture.location[1] - new_location[1] == 1
+      return piece_to_capture if piece_to_capture.location[0] - new_location[0] == 1 && piece_to_capture.location[1] == new_location[1]
     else
-      return piece_to_capture if piece_to_capture.location[0] + new_location[0] == 1 && piece_to_capture.location[1] + new_location[1] == 1
+      return piece_to_capture if piece_to_capture.location[0] + new_location[0] == 1 && piece_to_capture.location[1] == new_location[1]
     end
     false
   end
