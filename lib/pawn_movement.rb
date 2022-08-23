@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Pawn specific mixin for Movement module
 module Pawn_Movement
   def legal_pawn(new_location, registry)
     legal_diagonals = diag_moves
