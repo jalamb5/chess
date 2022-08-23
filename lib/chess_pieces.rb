@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../lib/piece_movement'
+require_relative '../lib/movement/piece_movement'
 require_relative '../lib/piece_capture'
 
 # Hold values common to all chess pieces

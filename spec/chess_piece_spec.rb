@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../lib/chess_pieces'
-require_relative '../lib/piece_movement'
+require_relative '../lib/movement/piece_movement'
 
 describe ChessPiece do
   context '#for' do
