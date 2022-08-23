@@ -4,7 +4,7 @@ require_relative './pawn_movement'
 
 # Mixin for chess_pieces to handle updating location and verifying move legality for a given piece
 module Movement
-  include Pawn_Movement
+  include PawnMovement
 
   def move(new_location, registry)
     return 'invalid move' unless legal(new_location, registry)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Pawn specific mixin for Movement module
-module Pawn_Movement
+module PawnMovement
   def legal_pawn(new_location, registry)
     legal_diagonals = diag_moves
     if legal_diagonals.include?(new_location)
@@ -31,9 +31,11 @@ module Pawn_Movement
     return piece_to_capture if piece_to_capture == false
 
     if piece_to_capture.color == :B
-      return piece_to_capture if piece_to_capture.location[0] - new_location[0] == 1 && piece_to_capture.location[1] == new_location[1]
-    else
-      return piece_to_capture if piece_to_capture.location[0] + new_location[0] == 1 && piece_to_capture.location[1] == new_location[1]
+      if piece_to_capture.location[0] - new_location[0] == 1 && piece_to_capture.location[1] == new_location[1]
+        return piece_to_capture
+      end
+    elsif piece_to_capture.location[0] + new_location[0] == 1 && piece_to_capture.location[1] == new_location[1]
+      return piece_to_capture
     end
     false
   end
