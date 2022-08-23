@@ -78,7 +78,7 @@ class Game
     end
   end
 
-  def king_in_check
+  def kings_in_check
     check = []
     registry.each do |piece|
       check << piece if piece.instance_of?(King)
@@ -91,9 +91,9 @@ class Game
   end
 
   def game_over
-    return unless king_in_check
+    return unless kings_in_check
 
-    kings = king_in_check
+    kings = kings_in_check
     kings.each do |king|
       return king if king.legal_moves.nil?
     end
