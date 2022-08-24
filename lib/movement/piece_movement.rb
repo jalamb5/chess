@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 require_relative './pawn_movement'
+require_relative './king_movement'
 
 # Mixin for chess_pieces to handle updating location and verifying move legality for a given piece
 module Movement
   include PawnMovement
+  include KingMovement
 
   def move(new_location, registry)
     return 'invalid move' unless legal(new_location, registry)
