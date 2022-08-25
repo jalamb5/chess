@@ -9,7 +9,9 @@ describe Movement do
     let(:original_location) { [0, 2] }
     let(:pawn) { ChessPiece.for(Pawn, :B, original_location) }
     let(:en_passant_pawn) { ChessPiece.for(Pawn, :W, [2, 3]) }
-    let(:registry) { [pawn, en_passant_pawn] }
+    let(:checked_king) { ChessPiece.for(King, :B, [0, 0]) }
+    let(:checking_rook) { ChessPiece.for(Rook, :W, [1, 1]) }
+    let(:registry) { [pawn, en_passant_pawn, checked_king, checking_rook] }
 
     it 'moves a piece from one location to another' do
       pawn.move(new_location, registry)
@@ -39,6 +41,11 @@ describe Movement do
       pawn.move([2, 2], registry)
       en_passant_pawn.move([1, 2], registry)
       expect(pawn.captured).to eq(true)
+    end
+
+    it 'marks a king as checked after another piece moves' do
+      checking_rook.move([0, 1], registry)
+      expect(checked_king.check).to be true
     end
   end
 end

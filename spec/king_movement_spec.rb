@@ -19,9 +19,14 @@ describe KingMovement do
     end
   end
 
-  context '#mark_checked' do
-    it 'marks a king as checked after another piece moves' do
-      
+  context '#opp_moves' do
+    let(:white_pawn) { ChessPiece.for(Pawn, :W, [1, 1]) }
+    let(:black_king) { ChessPiece.for(King, :B, [0, 0]) }
+    let(:white_pawn_legal_moves) { [[3, 1], [2, 1], [0, 1]] }
+    let(:registry) { [white_pawn, black_king] }
+
+    it 'creates a list of legal moves of all opponent pieces' do
+      expect(black_king.opp_moves(registry)).to eql(white_pawn_legal_moves)
     end
   end
 
