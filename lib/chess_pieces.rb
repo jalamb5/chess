@@ -70,7 +70,7 @@ class King < ChessPiece
   attr_reader :symbol
   attr_accessor :check, :legal_moves
 
-  KING_MOVE_ONE = [[0, 1], [0, -1], [1, 0], [-1, 0]].freeze
+  KING_MOVE_ONE = [[0, 1], [0, -1], [1, 0], [-1, 0], [1, 1], [-1, -1], [-1, 1], [1, -1]].freeze
 
   def initialize(starting_location, color)
     super(starting_location, color)

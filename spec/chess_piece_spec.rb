@@ -74,7 +74,7 @@ describe ChessPiece do
   describe King do
     let(:white_king) { described_class.new([0, 2], :W) }
     let(:black_king) { described_class.new([1, 2], :B) }
-    let(:king_moves) { [[0, 3], [0, 1], [1, 2]] }
+    let(:king_moves) { [[0, 3], [0, 1], [1, 2], [1, 3], [1, 1]] }
 
     context '#initialize' do
       it 'displays "♔" symbol for white king' do
