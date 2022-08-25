@@ -26,6 +26,7 @@ module Movement
     mark_en_passant(registry) if instance_of?(Pawn)
     self.has_moved = true
     self.legal_moves = moves
+    check_king(registry)
     self.last_mover = true
   end
 
@@ -42,5 +43,11 @@ module Movement
       return piece if piece.location == new_location
     end
     false
+  end
+
+  def check_king(registry)
+    registry.each do |piece|
+      piece.check = true if piece.instance_of?(King) && piece.color != color && legal_moves.include?(piece.location)
+    end
   end
 end
