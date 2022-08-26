@@ -30,12 +30,12 @@ describe KingMovement do
     end
   end
 
-  context '#checked_move' do
+  context '#legal_king' do
     let(:checked_king) { ChessPiece.for(King, :B, [0, 0]) }
     let(:checking_rook) { ChessPiece.for(Rook, :W, [1, 1]) }
     let(:registry) { [checked_king, checking_rook] }
 
-    it 'only allows a checked king to move out of check' do
+    it 'disallows king move that stays in check' do
       checking_rook.move([0, 1], registry)
       expect(checked_king.move([1, 1], registry)).to eq('invalid move')
     end

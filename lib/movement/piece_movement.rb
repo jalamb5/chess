@@ -33,6 +33,8 @@ module Movement
   def legal(new_location, registry)
     if instance_of?(Pawn)
       legal_pawn(new_location, registry)
+    elsif instance_of?(King)
+      legal_king(new_location, registry)
     else
       legal_moves.include?(new_location)
     end

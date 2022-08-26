@@ -13,4 +13,10 @@ module KingMovement
     end
     all_opp_moves
   end
+
+  def legal_king(new_location, registry)
+    opp_moves = opp_moves(registry)
+    # Do not allow king to move into check
+    return false if opp_moves.include?(new_location)
+  end
 end
