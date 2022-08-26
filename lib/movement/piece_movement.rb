@@ -46,10 +46,4 @@ module Movement
     end
     false
   end
-
-  def check_king(registry)
-    registry.each do |piece|
-      piece.check = true if piece.instance_of?(King) && piece.color != color && legal_moves.include?(piece.location)
-    end
-  end
 end

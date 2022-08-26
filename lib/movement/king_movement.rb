@@ -2,6 +2,12 @@
 
 # King specific mixin for Movement module
 module KingMovement
+  def check_king(registry)
+    registry.each do |piece|
+      piece.check = true if piece.instance_of?(King) && piece.color != color && legal_moves.include?(piece.location)
+    end
+  end
+
   def in_check?
     check
   end
@@ -18,5 +24,7 @@ module KingMovement
     opp_moves = opp_moves(registry)
     # Do not allow king to move into check
     return false if opp_moves.include?(new_location)
+
+    legal_moves.include?(new_location)
   end
 end
